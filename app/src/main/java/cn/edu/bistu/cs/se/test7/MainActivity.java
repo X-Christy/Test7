@@ -2,11 +2,13 @@ package cn.edu.bistu.cs.se.test7;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.preference.DialogPreference;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Menu;
@@ -15,18 +17,23 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.Map;
+
 public class MainActivity extends AppCompatActivity {
+
+    private Button button;
+    private Button button2;
     private EditText editText1;
     private EditText editText2;
-   // private static final String TAG="TAG";
+    private static final String TAG="TAG";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button btn = (Button) this.findViewById(R.id.button);
-        btn.setOnClickListener(new View.OnClickListener() {
+        button = (Button) this.findViewById(R.id.button);
+        button.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
@@ -75,8 +82,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button button = (Button) findViewById(R.id.button2);
-        button.setOnClickListener(new View.OnClickListener() {
+        button2 = (Button) findViewById(R.id.button2);
+        button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
@@ -85,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
 
                 view = inflater.inflate(R.layout.login_dialog,null);
                 editText1 = (EditText)view.findViewById(R.id.editTextUserId);
-                editText2 = (EditText)view.findViewById(R.id.editTextPwd);
+                editText2 = (EditText)view.findViewById(R.id.editPwd);
 
                 builder.setView(inflater.inflate(R.layout.login_dialog, null))
                         .setTitle("Login")
@@ -94,13 +101,14 @@ public class MainActivity extends AppCompatActivity {
 
                             @Override
                             public void onClick(DialogInterface dialog, int id) {
-//                                Log.i(TAG, String.valueOf(editText1));
+                                Log.i(TAG, String.valueOf(editText1));
+
                                 if (editText1.getText().toString().equals("abc") && editText2.getText().toString().equals("123")){
                                     Toast.makeText(MainActivity.this,"Login",Toast.LENGTH_LONG).show();
                                 }else{
                                     Toast.makeText(MainActivity.this,"Not Login",Toast.LENGTH_LONG).show();
                                 }
-
+                                dialog.cancel();
                             }
                         })
                         .setNegativeButton(R.string.cancel,new DialogInterface.OnClickListener(){

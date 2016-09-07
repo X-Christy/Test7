@@ -7,14 +7,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/editTextUserId"
-        android:hint="User Id"
-        />
+        android:hint="User Id" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/editTextPwd"
-        android:hint="Password"
-    />
+        android:id="@+id/editPwd"
+        android:hint="Password" />
 
 </LinearLayout>
